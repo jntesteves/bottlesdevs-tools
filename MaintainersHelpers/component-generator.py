@@ -51,20 +51,22 @@ def main():
 
     logger.info('getting file checksum and size')
     file_checksum = get_file_checksum(file_path)
-    file_size = os.path.getsize(file_path)
 
     logger.info('creating yaml file')
     yaml_file = {
         'Name': name,
         'Provider': provider,
-        'Maintainer': maintainer,
         'Channel': channel,
         'File': [{
             'file_name': file_name,
             'url': file_url,
             'file_checksum': file_checksum,
-            'file_size': file_size,
             'rename': file_name,
+        }],
+        'Post': [{
+            'action': 'rename',
+            'source': name,
+            'dest': name
         }]
     }
     
